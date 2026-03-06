@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "Chat": {
+      "title": "Chat",
+      "description": "Represents a conversation imported from WhatsApp.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "contactName": { "type": "string" },
+        "lastMessage": { "type": "string" },
+        "lastMessageTimestamp": { "type": "string", "format": "date-time" },
+        "messageCount": { "type": "integer" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "ownerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["contactName", "ownerId"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A single message within a chat. Content is encrypted.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chatId": { "type": "string" },
+        "sender": { "type": "string" },
+        "encryptedContent": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "isMedia": { "type": "boolean" },
+        "mediaUrl": { "type": "string" },
+        "mediaType": { "type": "string" },
+        "ownerId": { "type": "string" }
+      },
+      "required": ["chatId", "encryptedContent", "timestamp", "ownerId"]
+    },
+    "Media": {
+      "title": "Media",
+      "description": "Metadata for media files associated with chats.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chatId": { "type": "string" },
+        "messageId": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileType": { "type": "string" },
+        "url": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "uploadedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chatId", "url", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Collection of imported chat metadata."
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Collection of encrypted messages."
+    },
+    "/media/{mediaId}": {
+      "schema": "Media",
+      "description": "Collection of media file references."
+    }
+  }
+}

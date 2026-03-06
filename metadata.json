@@ -1,0 +1,5 @@
+{
+  "name": "ChatVault",
+  "description": "A secure, modern vault for your exported WhatsApp chats and media. Organize, search, and protect your digital memories with AES-256 encryption.",
+  "requestFramePermissions": []
+}

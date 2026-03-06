@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-whatsapp-green: #25D366;
+  --color-whatsapp-dark: #075E54;
+  --color-whatsapp-light: #DCF8C6;
+  --color-whatsapp-blue: #34B7F1;
+  --color-whatsapp-bg: #ECE5DD;
+  --color-whatsapp-dark-bg: #111b21;
+  --color-whatsapp-dark-bubble: #202c33;
+  --color-whatsapp-dark-bubble-self: #005c4b;
+}
+
+@layer components {
+  .chat-bubble-left {
+    @apply relative bg-white dark:bg-whatsapp-dark-bubble p-2 px-3 rounded-lg rounded-tl-none shadow-sm max-w-[85%] mb-2;
+  }
+  
+  .chat-bubble-right {
+    @apply relative bg-whatsapp-light dark:bg-whatsapp-dark-bubble-self p-2 px-3 rounded-lg rounded-tr-none shadow-sm max-w-[85%] mb-2 self-end;
+  }
+
+  .chat-bubble-left::before {
+    content: "";
+    @apply absolute top-0 -left-2 w-0 h-0 border-t-[10px] border-t-white dark:border-t-whatsapp-dark-bubble border-l-[10px] border-l-transparent;
+  }
+
+  .chat-bubble-right::before {
+    content: "";
+    @apply absolute top-0 -right-2 w-0 h-0 border-t-[10px] border-t-whatsapp-light dark:border-t-whatsapp-dark-bubble-self border-r-[10px] border-r-transparent;
+  }
+}
+
+body {
+  @apply bg-gray-50 dark:bg-whatsapp-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-200;
+}
